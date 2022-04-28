@@ -1,4 +1,5 @@
 import {
+  Badge,
   Spinner,
   Table,
   TableContainer,
@@ -6,12 +7,14 @@ import {
   Td,
   Th,
   Thead,
+  Tooltip,
   Tr,
 } from "@chakra-ui/react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
+import { BMIVerdict } from "../utils/bmi";
 dayjs.extend(relativeTime);
 
 const getResult = (arr) => {
@@ -27,6 +30,7 @@ const getResult = (arr) => {
         birthDate,
         createdDate: dayjs(+createdDate).toNow(true),
         bmi,
+        verdict: BMIVerdict(bmi),
       };
     })
     .reverse();
@@ -78,7 +82,11 @@ export default function History() {
                   <Td>{el.birthDate}</Td>
                   <Td>{el.size}</Td>
                   <Td>{el.weight}</Td>
-                  <Td isNumeric>{el.bmi}</Td>
+                  <Td isNumeric>
+                    <Tooltip label={el.verdict} placement="right">
+                      <Badge>{el.bmi}</Badge>
+                    </Tooltip>
+                  </Td>
                 </Tr>
               ))}
             </Tbody>

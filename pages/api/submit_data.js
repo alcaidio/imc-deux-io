@@ -1,5 +1,5 @@
 import { google } from "googleapis";
-import computeBMI from "../../utils/bmi";
+import { computeBMI } from "../../utils/bmi";
 
 const connect = () => {
   const auth = new google.auth.GoogleAuth({

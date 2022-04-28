@@ -11,17 +11,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Layout from "../components/Layout";
+import { BMIVerdict } from "../utils/bmi";
 import styles from "./Form.module.css";
-
-const BMIVerdict = (bmi) => {
-  if (bmi < 16.5) return "Starvation";
-  if (bmi >= 16.5 && bmi < 18.5) return "Thin";
-  if (bmi >= 18.5 && bmi < 25) return "Normal weight";
-  if (bmi >= 25 && bmi < 30) return "Overweight";
-  if (bmi >= 30 && bmi < 35) return "Moderate obesity";
-  if (bmi >= 35 && bmi < 40) return "Severe obesity";
-  return "Morbid or massive obesity";
-};
 
 export default function Form() {
   const {
